@@ -1,5 +1,5 @@
-﻿using RegistroPedidos.UI.Consultas;
-using RegistroPedidos.UI.Registros;
+﻿using Alvin_P2_API.UI.Consultas;
+using Alvin_P2_API.UI.Registros;
 using System.Windows;
 
 namespace Alvin_P2_API
@@ -11,14 +11,14 @@ namespace Alvin_P2_API
             InitializeComponent();
         }
 
-        private void rPartidasItem_Click(object sender, RoutedEventArgs e)
+        private void rProyectosItem_Click(object sender, RoutedEventArgs e)
         {
-            new rPartidas().Show();
+            new rProyectos().Show();
         }
 
-        private void cPartidasItem_Click(object sender, RoutedEventArgs e)
+        private void cProyectosItem_Click(object sender, RoutedEventArgs e)
         {
-            new cPartidas().Show();
+            new cProyectos().Show();
         }
     }
 }
