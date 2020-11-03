@@ -16,15 +16,15 @@ namespace Alvin_P2_API.DAL
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<TiposTareas>().HasData(
-                new TiposTareas { TareaId = 1, TipoTarea = "Analisis de Sistemas" }
+                new TiposTareas { TareaId = 1, Descripcion = "Analisis de Sistemas" }
                 );
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<TiposTareas>().HasData(
-                new TiposTareas { TareaId = 2, TipoTarea = "Diseño de Sistemas" }
+                new TiposTareas { TareaId = 2, Descripcion = "Diseño de Sistemas" }
                 );
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<TiposTareas>().HasData(
-                new TiposTareas { TareaId = 3, TipoTarea = "Programación Aplicada" }
+                new TiposTareas { TareaId = 3, Descripcion = "Programación Aplicada" }
                 );
         }
     }

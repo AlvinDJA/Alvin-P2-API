@@ -24,15 +24,13 @@ namespace Alvin_P2_API.Entidades
         public int Id { get; set; }
         public int ProyectoId { get; set; }
         public int TareaId { get; set; }
-        public string TipoTarea { get; set; }//
         public int Tiempo { get; set; }
         public string Requerimento { get; set; }
-        public ProyectosDetalle(int proyectoId, int tareaid, int tiempo, string requerimento)
+        public ProyectosDetalle(int proyectoId, int tareaId, int tiempo, string requerimento)
         {
             Id = 0;
             ProyectoId = proyectoId;
-            TareaId = tareaid;
-            TipoTarea = TiposTareasBLL.Buscar(Convert.ToInt32(TipoTareaComboBox.SelectedItem)).Descripcion;
+            TareaId = tareaId;
             Tiempo = tiempo;
             Requerimento = requerimento;
         }

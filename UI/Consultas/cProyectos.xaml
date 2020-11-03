@@ -13,6 +13,8 @@
                     <Label Content="Filtro:"/>
                     <ComboBox x:Name="FiltroComboBox" Width="100" Height="25">
                         <ComboBoxItem Content="Todo"/>
+                        <ComboBoxItem Content="Descripcion"/>
+                        <ComboBoxItem Content="Proyecto Id"/>
                     </ComboBox>
                 </StackPanel>
 
@@ -31,7 +33,13 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Left">
-                <DataGrid x:Name="DatosDataGrid" Height="240" Width="527" AutoGenerateColumns="True" IsEnabled="False" ItemsSource="{Binding Proyectos}">
+                <DataGrid x:Name="DatosDataGrid" Height="240" Width="527" AutoGenerateColumns="False" IsEnabled="False" ItemsSource="{Binding Proyectos}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ProyectoId" Binding="{Binding ProyectoId}" />
+                        <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}"/>
+                        <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}"/>
+                        <DataGridTextColumn Header="Tiempo Total" Binding="{Binding TiempoTotal}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
         </StackPanel>

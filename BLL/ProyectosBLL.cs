@@ -100,7 +100,6 @@ namespace Alvin_P2_API.BLL
         {
             Proyectos proyecto = new Proyectos();
             Contexto contexto = new Contexto();
-
             try
             {
                 proyecto = contexto.Proyectos.Include(x => x.Detalle)

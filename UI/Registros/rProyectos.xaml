@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Alvin_P2_API.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de Proyectos" Height="504" Width="673" Background="#FFF0F0F0" WindowStartupLocation="CenterScreen">
+        Title="Registro de Proyectos" Height="593" Width="673" Background="#FFF0F0F0" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Orientation="Vertical" >
             <StackPanel  Width="270" Margin="10,20,0,0" Orientation="Vertical" HorizontalAlignment="Left">
                 <Label Content="ProyectoId:" />
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Width="140" Height="25" />
+                    <TextBox Width="140" Height="25" Text="{Binding ProyectoId}" />
 
                     <Button x:Name="BuscarButton" Click="BuscarButton_Click" Margin="10,0,0,0" Width="72">
                         <StackPanel Orientation="Horizontal">
@@ -23,9 +23,9 @@
             </StackPanel>
             <StackPanel Width="220" Margin="10,10,0,0" Orientation="Vertical" HorizontalAlignment="Left">
                 <Label Content="Fecha:" />
-                <DatePicker Width="140" Height="25" Margin="0,0,0,0"  HorizontalAlignment="Left" />
+                <DatePicker Width="140" Height="25" Margin="0,0,0,0"  HorizontalAlignment="Left" SelectedDate="{Binding Fecha}"/>
             </StackPanel>
-            <TextBlock  Margin="10,10,0,0" Text="Escriba aqui" Height="66" Background="White" Width="575" HorizontalAlignment="Left" />
+            <TextBox  x:Name="DescripcionTextBox" Margin="10,10,0,0" Height="66" Background="White" Width="575" HorizontalAlignment="Left" Text="{Binding Descripcion}"/>
 
             <GroupBox>
                 <StackPanel>
@@ -34,7 +34,7 @@
                         <StackPanel  Width="146" Margin="0,20,0,0" Orientation="Vertical">
                             <Label Content="Tipo de Tarea:" />
                             <StackPanel Orientation="Horizontal">
-                                <ComboBox x:Name="TipoTareaComboBox" Width="140" Height="25" />
+                                <ComboBox x:Name="TipoTareaComboBox" Width="140" Height="25" SelectedValue="{Binding TareaId}"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel  Width="159" Margin="0,20,0,0" Orientation="Vertical">
@@ -66,20 +66,24 @@
 
                     <!--Datos-->
                     <StackPanel  Width="548" Margin="10,20,0,0" Orientation="Horizontal" HorizontalAlignment="Left" >
-                        <DataGrid x:Name="DatosDataGrid"  Height="150" Width="543" IsReadOnly="True" AutoGenerateColumns="False" >
+                        <DataGrid x:Name="DatosDataGrid"  Height="150" Width="548" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListaDetalle}" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="TipoId"/>
-                                <DataGridTextColumn Header="Tipo Tarea"/>
-                                <DataGridTextColumn Header="Requerimento"/>
-                                <DataGridTextColumn Header="Tiempo"/>
+                                <DataGridTextColumn Header="TipoId" Binding="{Binding TareaId}" />
+                                <DataGridTextColumn Header="Tipo Tarea" Binding="{Binding TipoTarea}"/>
+                                <DataGridTextColumn Header="Requerimento" Binding="{Binding Requerimento}"/>
+                                <DataGridTextColumn Header="Tiempo" Binding="{Binding Tiempo}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
+                    
                 </StackPanel>
             </GroupBox>
-            <!--Monto-->
-            <StackPanel  Margin="350,10,0,0"   Orientation="Horizontal" Width="123" HorizontalAlignment="Left"/>
-            <!--Botones-->
+            <StackPanel  Width="238"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,110,0">
+                <Label Content="Tiempo (Minutos):" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="TiempoTotalTextBox" Width="125" Height="25" />
+                </StackPanel>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,20,0,0" Width="300" HorizontalAlignment="Left">
                 <Button x:Name="NuevoButton"  Margin="10,0,0,0" Width="90" Click="NuevoButton_Click">
                     <StackPanel Orientation="Horizontal">
