@@ -157,12 +157,15 @@ namespace Alvin_P2_API.UI.Registros
         {
             if (DatosDataGrid.Items.Count >= 1 && DatosDataGrid.SelectedIndex <= DatosDataGrid.Items.Count - 1)
             {
-                ProyectosDetalle m = (ProyectosDetalle)DatosDataGrid.SelectedValue;
+                ProyectosDetalle m = (ProyectosDetalle)DatosDataGrid.SelectedItem;
                 proyectos.TiempoTotal -= m.Tiempo;
-                proyectos.Detalle.RemoveAt(DatosDataGrid.SelectedIndex);
-                Cargar();
+
+                proyectos.Detalle.Remove(proyectos.Detalle.Find(p => p.TareaId == m.TareaId && 
+                p.Requerimento.Equals(m.Requerimento)));
+                ListaDetalle.Remove(m);
+                CargarGrid();
             }
-            CargarGrid();
+            
         }
         private void Agregar_Click(object sender, RoutedEventArgs e)
         {
