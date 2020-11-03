@@ -9,15 +9,11 @@ namespace Alvin_P2_API.UI.Registros
     public partial class rProyectos : Window
     {
         private Proyectos proyectos = new Proyectos();
-
-        public List<object> ListaDetalle;
-
         public rProyectos()
         {
             InitializeComponent();
             IniciarCombobox();
             Limpiar();
-            ListaDetalle = new List<object>();
         }
 
         private void IniciarCombobox()
@@ -34,14 +30,9 @@ namespace Alvin_P2_API.UI.Registros
             this.DataContext = null;
             this.DataContext = proyectos;
             TiempoTotalTextBox.Text = proyectos.TiempoTotal.ToString();
-
-            DatosDataGrid.ItemsSource = null;
-            DatosDataGrid.ItemsSource = ListaDetalle;
-
         }
         private void Limpiar()
         {
-            ListaDetalle = new List<object>();
             this.proyectos = new Proyectos();
             this.proyectos.Fecha = DateTime.Now;
             this.DataContext = proyectos;
@@ -88,7 +79,7 @@ namespace Alvin_P2_API.UI.Registros
             if (encontrado != null)
             {
                 proyectos = encontrado;
-                CargarGrid();
+                Cargar();
             }
             else
             {
@@ -157,43 +148,23 @@ namespace Alvin_P2_API.UI.Registros
         {
             if (DatosDataGrid.Items.Count >= 1 && DatosDataGrid.SelectedIndex <= DatosDataGrid.Items.Count - 1)
             {
-                ProyectosDetalle m = (ProyectosDetalle)DatosDataGrid.SelectedItem;
-                proyectos.TiempoTotal -= m.Tiempo;
-
-                proyectos.Detalle.Remove(proyectos.Detalle.Find(p => p.TareaId == m.TareaId && 
-                p.Requerimento.Equals(m.Requerimento)));
-                ListaDetalle.Remove(m);
-                CargarGrid();
+                ProyectosDetalle m = (ProyectosDetalle)DatosDataGrid.SelectedValue;
+                proyectos.TiempoTotal -= m.Tiempo ;
+                proyectos.Detalle.RemoveAt(DatosDataGrid.SelectedIndex);
+                Cargar();
             }
-            
         }
         private void Agregar_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidarAgregar())
                 return;
-            proyectos.TiempoTotal += Convert.ToInt32(TiempoTextBox.Text);
-
+            proyectos.TiempoTotal += Convert.ToInt32(TiempoTextBox.Text) ;
+           
             proyectos.Detalle.Add(new ProyectosDetalle(proyectos.ProyectoId,
                 Convert.ToInt32(TipoTareaComboBox.SelectedValue.ToString()),
                 Convert.ToInt32(TiempoTextBox.Text),
                 RequerimentoTextBox.Text.ToString()));
 
-            CargarGrid();
-        }
-        private void CargarGrid()
-        {
-            ListaDetalle = new List<object>();
-            foreach (ProyectosDetalle prodetalle in proyectos.Detalle)
-            {
-                this.ListaDetalle.Add(new
-                {
-                    prodetalle.TareaId,
-                    TipoTarea = TiposTareasBLL.Buscar(prodetalle.TareaId).Descripcion,
-                    prodetalle.Requerimento,
-                    prodetalle.Tiempo,
-                }
-                );
-            }
             Cargar();
         }
 

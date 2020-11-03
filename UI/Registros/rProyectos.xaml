@@ -66,10 +66,10 @@
 
                     <!--Datos-->
                     <StackPanel  Width="548" Margin="10,20,0,0" Orientation="Horizontal" HorizontalAlignment="Left" >
-                        <DataGrid x:Name="DatosDataGrid"  Height="150" Width="548" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListaDetalle}" >
+                        <DataGrid x:Name="DatosDataGrid"  Height="150" Width="548" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Detalle}" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="TipoId" Binding="{Binding TareaId}" />
-                                <DataGridTextColumn Header="Tipo Tarea" Binding="{Binding TipoTarea}"/>
+                                <DataGridTextColumn Header="Tipo Tarea" Binding="{Binding TareaId}"/>
                                 <DataGridTextColumn Header="Requerimento" Binding="{Binding Requerimento}"/>
                                 <DataGridTextColumn Header="Tiempo" Binding="{Binding Tiempo}"/>
                             </DataGrid.Columns>
